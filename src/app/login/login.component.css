@@ -1,0 +1,152 @@
+.navbar {
+    background-color: #344E41; /* Verde escuro semelhante ao da imagem */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    height: 50px;
+  }
+  
+  /* Responsividade */
+  @media screen and (max-width: 600px) {
+      .navbar a {
+          float: none;
+          display: block;
+          text-align: left;
+      }
+      .navbar h1{
+          color: white;
+      }
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e4e1d4; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+
+.form-container{
+    margin-top: 150px;
+}
+
+
+form {
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 300px;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: transparent;
+    border: 3px solid #2f5034;
+    border-radius: 50px;
+    font-size: 16px;
+    outline: none;
+    color: #2f5034;
+    
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: #2f5034;
+}
+
+button {
+    width: 270px;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 50px;
+    background-color: #344E41;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="button"]{
+    width: 220px;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 50px;
+    background-color: #344E41;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+button:hover {
+    background-color: #3f6648;
+}
+
+button:last-of-type {
+    background-color: transparent;
+    color: #2f5034;
+    border: 2px solid #2f5034;
+    font-size: 14px;
+}
+
+button:last-of-type:hover {
+    background-color: #2f5034;
+    color: white;
+}
+
+img {
+    display: block;
+    margin: 0 auto 5px; /* Centraliza a imagem e adiciona espaço abaixo dela */
+    width: 300px;
+    height: 150px; /* Mantém a proporção da imagem */
+    margin-top: 100px;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  right: 335px;
+  bottom: 10px;
+  width: 32.9px;
+  height: 35px;
+}
+
+.input-icon2 {
+    position: absolute;
+    right: 335px;
+    bottom: 10px;
+    width: 32.9px;
+    height: 35px;
+  }
+  
+.hidden-show{
+    display: flex;
+    position: absolute;
+    left : 335px;
+    bottom: 13px;
+    height: 30px;
+    width: 30px;
+}
+

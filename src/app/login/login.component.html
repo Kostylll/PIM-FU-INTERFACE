@@ -1,0 +1,22 @@
+<title>Login</title>
+<div class="container">
+    <nav class="navbar">
+    </nav>
+    <div class="form-container">
+        <img src="./assets/logo3.png" alt="">
+        <form [formGroup]="loginAuth">
+            <div class="input-container">
+                <img src="./assets/icon-person.png" alt="" class="input-icon">
+                <input type="text" placeholder="Usuário" id="name" formControlName="name" name="name">
+            </div>
+            <div class="input-container">
+                <img src="./assets/lock.png" alt="" class="input-icon2">
+                <input [type]="show ? 'text' : 'password'" placeholder="Senha" id="password" formControlName="password" name="password">
+                <img [src]="show ? './assets/eye.png' : './assets/invisible.png'" class="hidden-show" (click)="password()" alt="Toggle Password Visibility">
+                
+            </div>
+            <button  (click)="saveLogin()">Entrar</button>
+            <button type="button" (click)="mostrarAviso()">Esqueci minha senha</button>
+        </form>
+    </div>
+</div>

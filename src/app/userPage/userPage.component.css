@@ -1,0 +1,132 @@
+.form-container {
+    background-color: #58815799;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 1000px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    color: #344E41;
+    margin-top: 150px;
+  }
+  
+  .form-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-header h2 {
+    margin: 0;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  
+
+  .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .form-item {
+    flex: 1;
+    margin-right: 10px;
+    min-width: 200px;
+  }
+  
+  .form-item:last-child {
+    margin-right: 0;
+  }
+  
+  .form-item label {
+    display: block;
+    margin-bottom: 5px;
+    
+  }
+  
+  .form-item input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #344E41;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #DAD7CD;
+  }
+  
+  /* Customizações específicas */
+  #endereco, #complemento {
+    min-width: calc(50% - 10px);
+  }
+  
+  #nome, #status {
+    min-width: calc(50% - 10px);
+  }
+  
+/* //navbar */
+  .navbar {
+    background-color: #344E41; /* Verde escuro semelhante ao da imagem */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    height: 50px;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .saudacoes img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;  
+  }
+  
+  .saudacoes button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+      .navbar a {
+          float: none;
+          display: block;
+          text-align: left;
+      }
+      .navbar h1{
+          color: white;
+      }
+  }
+  
+  .navbar h1{
+     border-style: none;
+     margin-top: 5px;
+     text-align: left;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     color: white;
+     margin-left: 20px;
+  }
+  
+  .navbar p{
+    margin: 0;
+    text-align: right;
+   
+  }
