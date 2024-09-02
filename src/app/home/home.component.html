@@ -5,6 +5,7 @@
         <img src="/assets/logo2.png" alt="">
         <img src="/assets/logo.png" alt="Logo da Simple Plan">
     </div>
+    <p>aa</p>
     <div class="saudacoes">
       <a routerLink="/userPage">
         <img src="/assets/dados.png" alt="Ícone de usuário">
@@ -13,7 +14,7 @@
          <img src="/assets/ajuda.png" alt="">
 
        </a> 
-       <button routerLink="/login">
+       <button (click)="logOut()" >
          <img  src="/assets/saida.png" alt="">
        </button>
     </div>
@@ -23,7 +24,7 @@
   <button routerLink="/sales" class="grid-item"><img class="image-button" src="/assets/vendas.png" alt=""></button>
   <button routerLink="/products" class="grid-item"><img class="image-button" src="/assets/produção.png" alt=""></button>
   <button routerLink="/supply" class="grid-item"><img class="image-button" src="/assets/supplyLogo.png" alt=""></button>
-  <button routerLink="/colaborators" class="grid-item"><img class="image-button" src="/assets/colaboradores.png" alt=""></button>
+  <button *ngIf="isToken()" routerLink="/colaborators" class="grid-item"><img class="image-button" src="/assets/colaboradores.png" alt=""></button>
 </div>
     
 

@@ -7,6 +7,8 @@ import { Router } from "express";
 import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { SupplyPopUpComponent } from "../popUpComponents/supplyPopUp.component";
+import { LoginService } from "../Services/login.service";
+import Swal from "sweetalert2";
 
 @Component({
     selector:'app-home',
@@ -18,11 +20,37 @@ import { SupplyPopUpComponent } from "../popUpComponents/supplyPopUp.component";
 
 export class HomeComponent implements OnInit {
    
+    userAuth = sessionStorage.getItem('token')
+    
+    constructor(private loginService : LoginService){}
  
     ngOnInit() {
         
     }
+
+
+    isToken() : boolean{
+      return this.userAuth === '81280782-61b0-45bf-86b9-6589cf5a8c5f'
+    }
     
+    
+    logOut(){
+        Swal.fire({
+            title: 'Você tem certeza?',
+            text: 'Você será deslogado!',
+            icon: 'warning',
+            iconColor: '#DAD7CD',
+            customClass: {
+              popup : 'custom-popup',
+              confirmButton: 'custom-confirm-button',
+              icon: 'custom-icon'
+          }
+          }).then((result) => {
+            if (result.isConfirmed) {
+             this.loginService.logoutUser()
+            
+            }
+          });
+        }
+    }
   
-  
-}

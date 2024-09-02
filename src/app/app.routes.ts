@@ -7,6 +7,7 @@ import { ProductComponent } from './productPage/product.component';
 import { SalesComponent } from './salesPage/sales.compoment';
 import { UserPageComponent } from './userPage/userPage.component';
 import { SupplyPopUpComponent } from './popUpComponents/supplyPopUp.component';
+import { AuthGuard } from './Services/authGuard.service';
 
 export const routes: Routes = [
     {
@@ -16,7 +17,8 @@ export const routes: Routes = [
     },
     {
         path:'home',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate : [AuthGuard]
     },
     {
         path:'login',
@@ -24,31 +26,33 @@ export const routes: Routes = [
     },
     {
         path:'supply',
-        component: SupplyComponent
+        component: SupplyComponent,
+        canActivate : [AuthGuard]
     },
     {
         path:'colaborators',
-        component: ColaboratorComponent
+        component: ColaboratorComponent,
+        canActivate : [AuthGuard]
     },
     {
         path:'products',
-        component: ProductComponent
+        component: ProductComponent,
+        canActivate : [AuthGuard]
     },
     {
         path:'sales',
-        component: SalesComponent
-    },
-    {
-        path:'login',
-        component:LoginComponent
+        component: SalesComponent,
+        canActivate : [AuthGuard]
     },
     {
         path:'userPage',
-        component:UserPageComponent
+        component:UserPageComponent,
+        canActivate : [AuthGuard]
     },
     {
         path:'popUp',
-        component: SupplyPopUpComponent
+        component: SupplyPopUpComponent,
+        canActivate : [AuthGuard]
     }
 ];
 

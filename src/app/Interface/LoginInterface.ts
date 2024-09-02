@@ -1,6 +1,7 @@
 export interface LoginInterface{
 
-    name: string
-    password : string
+    userAuth : string
+    nome: string
+    senha : string
     
 }

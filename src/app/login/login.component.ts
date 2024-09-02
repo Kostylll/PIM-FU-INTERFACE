@@ -40,16 +40,31 @@ export class LoginComponent implements OnInit{
 
         const formData = this.loginAuth.value
         
-        let name = this.loginAuth.get('name')?.value;
-        let password = this.loginAuth.get('password')?.value;
+        let nome = this.loginAuth.get('name')?.value;
+        let senha = this.loginAuth.get('password')?.value;
 
-        this.loginModel.name = name,
-        this.loginModel.password = password
+        this.loginModel.nome = nome,
+        this.loginModel.senha = senha
 
         console.log(formData)
 
         this.loginService.sendLogin(this.loginModel).subscribe((res) =>{
-            console.log("Logado como : " ,this.loginModel)
+            if(res.userAuth != null){
+            const token = res.userAuth;
+            this.loginService.setToken(token)
+            console.log("Logado como : " ,this.loginModel,token)
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    title:"Insira um Colaborador válido!",
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        popup : 'custom-popup',
+                        confirmButton: 'custom-confirm-button',
+                        icon: 'custom-icon'
+                    }
+                })
+            }
         })
 
     }
