@@ -1,4 +1,4 @@
-import { CarInterface } from "./CarInterface"
+import { CarInterface } from "../CarInterface"
 
 export interface CarTable{
 

@@ -46,9 +46,13 @@ export class LoginService{
     }
 
     
-    isAuthenticated():boolean{
-        return !!sessionStorage.getItem('token');
+    isAuthenticated(): boolean {
+        if (typeof window !== 'undefined' && window.sessionStorage) {
+          return !!sessionStorage.getItem('token');
+        }
+        return false;
       }
+      
   
       canAccess() {
         if (!this.isAuthenticated()) {

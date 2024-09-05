@@ -1,0 +1,73 @@
+<title>Colaboradores</title>
+<div class="container">
+  <nav class="navbar">
+    <div class="logo">
+      <img src="/assets/logo2.png" alt="" />
+      <img src="/assets/logo.png" alt="Logo da Simple Plan" />
+    </div>
+    <div class="saudacoes">
+      <button routerLink="/home">
+        <img style="width: 50px" src="/assets/home.png" alt="" />
+      </button>
+    </div>
+  </nav>
+  <div class="card-backgrond">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-container">
+          <div class="btn-container">
+            <button 
+            class="btn-top-left"
+            (click)="openModalRegister()"
+            >Adicionar Colaborador</button>
+            <button
+              class="btn-top-left2"
+              (click)="openModalEdit()"
+              (click)="doStuff()"
+            >
+              Alterar Colaborador
+            </button>
+            <table
+              cellspacing="10"
+              id="datatables"
+              *ngIf="dataTable && dataTable.header"
+              class="table"
+            >
+              <thead>
+                <tr>
+                  <th *ngFor="let itemHeader of dataTable.header">
+                    {{ itemHeader }}
+                  </th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th *ngFor="let itemFooter of dataTable.footer">
+                    {{ itemFooter }}
+                  </th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <tr
+                  *ngFor="let colaborator of dataTable.dataRows"
+                  (click)="onSelected(colaborator); showToast('Item selecionado!')"
+                >
+                  <td>{{ colaborator.id }}</td>
+                  <td>{{ colaborator.nome }}</td>
+                  <td>{{ colaborator.email }}</td>
+                  <td>{{ colaborator.telefone }}</td>
+                  <td>{{ colaborator.cpf }}</td>
+                  <td>
+                    <button style="background: transparent; border: none;" (click)="deleteColab(colaborator)">
+                      <fa-icon  style="color: rgb(163, 26, 26);cursor: pointer;" [icon]="faTrash"></fa-icon>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
