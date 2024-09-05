@@ -229,7 +229,7 @@ table td:first-child {
   border: 1px solid #588157;
   text-decoration: none;
   text-align: center;
-  position: absolute; /* Posiciona o botão */
+  position: fixed; /* Posiciona o botão */
   top: 45px; /* Ajuste a distância do topo */
   left: 40vh; /* Ajuste a distância da direita */
   z-index: 10; /* Garante que o botão fique acima de outros elementos */

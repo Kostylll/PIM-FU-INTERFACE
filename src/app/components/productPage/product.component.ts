@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CarInterface } from '../Interface/CarInterface';
-import { CarService } from '../Services/car.service';
+import { CarInterface } from '../../Interface/CarInterface';
+import { CarService } from '../../Services/car.service';
 import { MatDialog } from '@angular/material/dialog';
-import { SupplyPopUpComponent } from '../popUpComponents/supplyPopUp.component';
+
 import Swal from 'sweetalert2';
-import { CarTable } from '../Interface/CarTable';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { CarTable } from '../../Interface/Table/CarTable';
+import { SupplyPopUpComponent } from '../popUpComponents/supplyPopUp.component';
 
 declare const $: any;
 

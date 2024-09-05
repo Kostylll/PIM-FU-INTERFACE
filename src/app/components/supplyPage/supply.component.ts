@@ -1,8 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
-import { CarInterface } from "../Interface/CarInterface";
-import { CarService } from "../Services/car.service";
+
 import { RouterLink } from "@angular/router";
+import { CarInterface } from "../../Interface/CarInterface";
+import { CarService } from "../../Services/car.service";
 
 @Component({
     selector: 'app-supply',

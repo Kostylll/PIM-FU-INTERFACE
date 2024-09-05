@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { LoginService } from "../Services/login.service";
-import { LoginInterface } from "../Interface/LoginInterface";
+import { LoginService } from "../../Services/login.service";
+import { LoginInterface } from "../../Interface/LoginInterface";
 import Swal from 'sweetalert2';
 import { RouterLink } from "@angular/router";
 

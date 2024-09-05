@@ -1,0 +1,68 @@
+<title>Dados</title>
+<div class="container">
+  <nav class="navbar">
+    <div class="logo">
+      <img src="/assets/logo2.png" alt="" />
+      <img src="/assets/logo.png" alt="Logo da Simple Plan" />
+    </div>
+    <div class="saudacoes">
+      <button routerLink="/home">
+        <img style="width: 50px" src="/assets/home.png" alt="" />
+      </button>
+    </div>
+  </nav>
+
+  <div class="form-container">
+    <div class="form-header">
+      <h2>INFORMAÇÕES BÁSICAS</h2>
+    </div>
+    <form>
+      <div class="form-group">
+        <div class="form-item">
+          <label for="nome">Nome</label>
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            [ngModel]="loggedColaborator.nome"
+            disabled="true"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-item">
+          <label for="cpf">CPF</label>
+          <input
+            type="text"
+            id="cpf"
+            name="cpf"
+            [ngModel]="loggedColaborator.cpf"
+            disabled="true"
+          />
+        </div>
+        <div class="form-item">
+          <label for="telefone">Telefone</label>
+          <input
+            type="text"
+            id="telefone"
+            name="telefone"
+            [ngModel]="loggedColaborator.telefone"
+            disabled="true"
+          />
+        </div>
+
+        <div class="form-item">
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [ngModel]="loggedColaborator.email"
+            disabled="true"
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

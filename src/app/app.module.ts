@@ -3,13 +3,13 @@ import { HomeComponent } from "./home/home.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { LoginComponent } from "./login/login.component";
+import { LoginComponent } from "./components/loginPage/login.component";
 import { RouterModule } from "@angular/router";
 import { routes } from "./app.routes";
 import { ColaboratorComponent } from "./colaboratorPage/colaborator.component";
-import { ProductComponent } from "./productPage/product.component";
-import { SalesComponent } from "./salesPage/sales.compoment";
-import { UserPageComponent } from "./userPage/userPage.component";
+import { ProductComponent } from "./components/productPage/product.component";
+import { SalesComponent } from "./components/salesPage/sales.compoment";
+import { UserPageComponent } from "./components/userPage/userPage.component";
 import { SupplyPopUpComponent } from "./popUpComponents/supplyPopUp.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatDialogModule } from '@angular/material/dialog';
@@ -40,6 +40,7 @@ import { MatSortModule } from '@angular/material/sort';
         MatPaginatorModule,
         MatTableModule,
         MatSortModule,
+        
             
     ],
     providers : [

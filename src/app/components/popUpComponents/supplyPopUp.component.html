@@ -1,0 +1,26 @@
+<div class="form-container">
+    <div class="form-header">
+        <h2>{{TitleText}}</h2>
+        <button class="close-button" (click)="onClose()">&times;</button>
+    </div>
+    <form [formGroup]="register">
+        <div class="form-group">
+            <label for="razao-social">Nome</label>
+            <input type="text" id="type" name="type"  formControlName="nome"  id="type">
+        </div>
+        <div class="form-group">
+            <label for="cnpj">Email</label>
+            <input type="text" id="cnpj" name="cnpj"  formControlName="email">
+        </div>
+        <div class="form-group">
+            <label for="produto">Telefone</label>
+            <input type="text" id="produto" name="produto"  formControlName="telefone">
+        </div>
+        <div class="form-group">
+            <label for="quantidade">CPF</label>
+            <input type="text" id="quantidade" name="quantidade"   formControlName="cpf">
+        </div>
+        
+        <button type="submit" class="submit-button" (click)="confirmRegister()">{{buttonText}}</button>
+    </form>
+</div>
