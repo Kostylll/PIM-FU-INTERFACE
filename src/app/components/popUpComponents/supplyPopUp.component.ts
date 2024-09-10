@@ -42,6 +42,8 @@ export class SupplyPopUpComponent implements OnInit {
         email: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.pattern("[^ @]*@[^ @]*")]),
         telefone : new FormControl(null,[Validators.required]),
         cpf : new FormControl(null,[Validators.required]),
+        endereco : new FormControl(null,[Validators.required]),
+        data_Nascimento : new FormControl(null,[Validators.required]),
     })
   }
 
@@ -75,12 +77,15 @@ export class SupplyPopUpComponent implements OnInit {
     let email = this.register.get("email")?.value
     let telefone = this.register.get("telefone")?.value
     let cpf = this.register.get("cpf")?.value
-
+    let endereco = this.register.get("endereco")?.value
+    let data_Nascimento = this.register.get("data_Nascimento")?.value
 
     this.colaboratorModel.nome = nome;
     this.colaboratorModel.email = email;
     this.colaboratorModel.telefone = telefone;
     this.colaboratorModel.cpf = cpf;
+    this.colaboratorModel.endereco = endereco;
+    this.colaboratorModel.data_Nascimento = data_Nascimento
  
 
     this.colabServ.registerColaborator(this.colaboratorModel).subscribe((res) =>{

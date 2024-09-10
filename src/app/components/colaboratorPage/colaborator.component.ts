@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -10,14 +10,40 @@ import { ColaboratorInterface } from '../../Interface/ColaboratorInterface';
 import { ColaboratorTable } from '../../Interface/Table/ColaboratorTable';
 import { ColaboratorService } from '../../Services/colaborator.service';
 import { SupplyPopUpComponent } from '../popUpComponents/supplyPopUp.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+
 @Component({
   selector: 'app-colaborator',
   templateUrl: './colaborator.component.html',
   standalone: true,
   styleUrls: ['./colaborator.component.css'],
-  imports: [CommonModule, RouterLink,FontAwesomeModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    FontAwesomeModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    
+  ],
 })
 export class ColaboratorComponent {
+  displayedColumns: string[] = [
+  
+    'nome',
+    'email',
+    'telefone',
+    'cpf',
+    'endereço',
+    'data_nascimento',
+    'delete',
+  ];
+  dataSource = new MatTableDataSource<any>([]);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   selectedItem: any;
   dataTable: ColaboratorTable;
   product: ColaboratorInterface[] = [];
@@ -30,66 +56,63 @@ export class ColaboratorComponent {
 
   ngOnInit() {
     this.getColaborators();
-
-    this.dataTable = {
-      header: ['Id', 'Nome', 'Email', 'Telefone', 'CPF'],
-      footer: ['Id', 'Nome', 'Email', 'Telefone', 'CPF'],
-      dataRows: this.product,
-    };
-
-    setInterval(() => {
-      this.getColaborators();
-    }, 5000);
   }
 
   getColaborators() {
     this.colabServ.getAll().subscribe((res) => {
-      console.log(res);
       if (res) {
-        let dataColab = res;
-        this.dataTable = {
-          header: ['Id', 'Nome', 'Email', 'Telefone', 'CPF',''],
-          footer: ['Id', 'Nome', 'Email', 'Telefone', 'CPF',''],
-          dataRows: dataColab,
-        };
+        this.product = res;
+        this.dataSource = new MatTableDataSource(this.product);
+        this.dataSource.paginator = this.paginator;
       }
     });
   }
+  
+  formatDate(dateString: string): string {
+    const date = new Date(dateString.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
+    return date.toLocaleDateString();
+  }
 
-  deleteColab(colaborator : ColaboratorInterface){
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  deleteColab(colaborator: ColaboratorInterface) {
     Swal.fire({
       title: 'Deseja desligar este Colaborador?',
       icon: 'question',
       showCancelButton: true,
-      showConfirmButton : true,
-      confirmButtonText: "Sim",
-      denyButtonText: "Não",
+      confirmButtonText: 'Sim',
+      denyButtonText: 'Não',
       customClass: {
         popup: 'custom-popup',
         confirmButton: 'custom-confirm-button',
         icon: 'custom-icon',
       },
     }).then((res) => {
-      if(res.isConfirmed){
-        this.colabServ.deleteColaborator(colaborator.id).subscribe(() =>{
+      if (res.isConfirmed) {
+        this.colabServ.deleteColaborator(colaborator.id).subscribe(() => {
           Swal.fire({
-            title:"Colaborador Desligado!",
-            showConfirmButton: true,
+            title: 'Colaborador Desligado!',
             icon: 'success',
-             customClass: {
-        popup: 'custom-popup',
-        confirmButton: 'custom-confirm-button',
-        icon: 'custom-icon',
-      },
-          })
-        })
+            customClass: {
+              popup: 'custom-popup',
+              confirmButton: 'custom-confirm-button',
+              icon: 'custom-icon',
+            },
+          });
+          this.getColaborators();
+        });
       }
-    })
+    });
   }
 
-  onSelected(colaborator: any): void {
-    this.selectedItem = colaborator;
-    console.log(this.selectedItem);
+  onRowClick(row: any): void {
+    this.selectedItem = row;
+    console.log(this.selectedItem)
+    this.showToast("Item Selecionado!")
   }
 
   doStuff() {
@@ -135,6 +158,7 @@ export class ColaboratorComponent {
 
     dialogRef.afterClosed().subscribe(() => {
       this.selectedItem = null;
+      this.getColaborators(); 
     });
   }
 
@@ -145,6 +169,10 @@ export class ColaboratorComponent {
       maxWidth: '36vw',
       maxHeight: '62vh',
       panelClass: 'scrollable-dialog',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.getColaborators(); 
     });
   }
 

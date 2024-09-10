@@ -1,4 +1,4 @@
-<title>Produtos</title>
+<title>Produto</title>
 <div class="container">
   <nav class="navbar">
     <div class="logo">
@@ -17,45 +17,19 @@
         <div class="table-container">
           <div class="btn-container">
             <button class="btn-top-left">Adicionar Produto</button>
-            <button
-              class="btn-top-left2"
-              (click)="openModal()"
-              (click)="doStuff()"
-            >
-              Alterar Produto
-              
-            </button>
-            <table
-            id="datatables"
-            *ngIf="dataTable && dataTable.header"
-            class="table"
-            >
-            <thead>
+            <button class="btn-top-left2">Alterar Produto</button>
+
+            <table class="table">
+              <thead>
                 <tr>
-                  <th *ngFor="let itemHeader of dataTable.header">
-                    {{ itemHeader }}
-                  </th>
+                  <th scope="col">Modelo</th>
+                  <th scope="col">Cor</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Preço</th>
+                  <th scope="col">Descrição</th>
+                  <th></th>
                 </tr>
               </thead>
-              <tfoot>
-                <tr>
-                  <th *ngFor="let itemFooter of dataTable.footer">
-                    {{ itemFooter }}
-                  </th>
-                </tr>
-              </tfoot>
-              <tbody>
-                <tr
-                  *ngFor="let car of dataTable.dataRows"
-                  (click)="onSelected(car); showToast('Item selecionado!')"
-                >
-                  <td>{{ car.model }}</td>
-                  <td>{{ car.color }}</td>
-                  <td>{{ car.type }}</td>
-                  <td>{{ car.price }}</td>
-                  <td>{{ car.description }}</td>
-                </tr>
-              </tbody>
             </table>
           </div>
         </div>

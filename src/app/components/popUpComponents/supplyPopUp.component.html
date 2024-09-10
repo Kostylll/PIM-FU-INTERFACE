@@ -20,6 +20,14 @@
             <label for="quantidade">CPF</label>
             <input type="text" id="quantidade" name="quantidade"   formControlName="cpf">
         </div>
+        <div class="form-group">
+            <label for="quantidade">Endereço</label>
+            <input type="text" id="quantidade" name="quantidade"   formControlName="endereco">
+        </div>
+        <div class="form-group">
+            <label for="quantidade">Data Nascimento</label>
+            <input type="date" id="quantidade" name="quantidade"   formControlName="data_Nascimento">
+        </div>
         
         <button type="submit" class="submit-button" (click)="confirmRegister()">{{buttonText}}</button>
     </form>

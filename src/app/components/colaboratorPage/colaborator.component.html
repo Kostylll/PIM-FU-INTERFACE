@@ -1,71 +1,114 @@
-<title>Colaboradores</title>
-<div class="container">
-  <nav class="navbar">
-    <div class="logo">
-      <img src="/assets/logo2.png" alt="" />
-      <img src="/assets/logo.png" alt="Logo da Simple Plan" />
-    </div>
-    <div class="saudacoes">
-      <button routerLink="/home">
-        <img style="width: 50px" src="/assets/home.png" alt="" />
-      </button>
-    </div>
-  </nav>
-  <div class="card-backgrond">
-    <div class="card">
-      <div class="card-body">
-        <div class="table-container">
-          <div class="btn-container">
-            <button 
-            class="btn-top-left"
-            (click)="openModalRegister()"
-            >Adicionar Colaborador</button>
-            <button
-              class="btn-top-left2"
-              (click)="openModalEdit()"
-              (click)="doStuff()"
-            >
-              Alterar Colaborador
+<nav class="navbar">
+  <div class="logo">
+    <img src="/assets/logo2.png" alt="" />
+    <img src="/assets/logo.png" alt="Logo da Simple Plan" />
+  </div>
+  <div class="saudacoes">
+    <button routerLink="/home">
+      <img style="width: 50px" src="/assets/home.png" alt="" />
+    </button>
+  </div>
+</nav>
+<div class="card-backgrond">
+  <div class="card">
+    <div class="card-body">
+      <div class="container">
+        <div class="search-container">
+          <div class="button-group">
+            <button class="btn" (click)="openModalRegister()">
+              <span class="icon">➕</span> Adicionar
             </button>
-            <table
-              cellspacing="10"
-              id="datatables"
-              *ngIf="dataTable && dataTable.header"
-              class="table"
-            >
-              <thead>
-                <tr>
-                  <th *ngFor="let itemHeader of dataTable.header">
-                    {{ itemHeader }}
-                  </th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th *ngFor="let itemFooter of dataTable.footer">
-                    {{ itemFooter }}
-                  </th>
-                </tr>
-              </tfoot>
-              <tbody>
-                <tr
-                  *ngFor="let colaborator of dataTable.dataRows"
-                  (click)="onSelected(colaborator); showToast('Item selecionado!')"
-                >
-                  <td>{{ colaborator.id }}</td>
-                  <td>{{ colaborator.nome }}</td>
-                  <td>{{ colaborator.email }}</td>
-                  <td>{{ colaborator.telefone }}</td>
-                  <td>{{ colaborator.cpf }}</td>
-                  <td>
-                    <button style="background: transparent; border: none;" (click)="deleteColab(colaborator)">
-                      <fa-icon  style="color: rgb(163, 26, 26);cursor: pointer;" [icon]="faTrash"></fa-icon>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <button class="btn" (click)="openModalEdit()">
+              <span class="icon">✏️</span> Editar
+            </button>
+          <input
+            class="search-bar"
+            matInput
+            type="text"
+            placeholder="Pesquisar Colaborador"
+            (keyup)="applyFilter($event)"
+          />
+          <span class="search-icon">🔍</span>
+          
           </div>
+        </div>
+        
+        <div class="table-container">
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            class="mat-elevation-z8"
+            cellspacing="10"
+            id="datatables"
+          >
+           
+
+            <ng-container matColumnDef="nome">
+              <th mat-header-cell  *matHeaderCellDef>Nome</th>
+              <td mat-cell *matCellDef="let colaborator">
+                {{ colaborator.nome }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef>Email</th>
+              <td mat-cell *matCellDef="let colaborator">
+                {{ colaborator.email }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="telefone">
+              <th mat-header-cell *matHeaderCellDef>Telefone</th>
+              <td mat-cell *matCellDef="let colaborator">
+                {{ colaborator.telefone }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cpf">
+              <th mat-header-cell *matHeaderCellDef>CPF</th>
+              <td mat-cell *matCellDef="let colaborator">
+                {{ colaborator.cpf }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="endereço">
+              <th mat-header-cell *matHeaderCellDef>Endereço</th>
+              <td mat-cell *matCellDef="let colaborator">
+                {{ colaborator.endereco }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="data_nascimento">
+              <th mat-header-cell *matHeaderCellDef>Data Nascimento</th>
+              <td mat-cell *matCellDef="let colaborator">
+                {{formatDate(colaborator.data_Nascimento)}}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let colaborator">
+                <button
+                  style="background: transparent; border: none"
+                  (click)="deleteColab(colaborator)"
+                >
+                  <fa-icon
+                    style="color: rgb(163, 26, 26); cursor: pointer"
+                    [icon]="faTrash"
+                  ></fa-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClick(row)" ></tr>
+          </table>
+
+          <mat-paginator
+            class="paginator"
+            [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons
+          ></mat-paginator>
         </div>
       </div>
     </div>
