@@ -25,6 +25,13 @@ export class UserPageComponent implements OnInit {
     this.getDados()
   }
 
+  formatDate(dateString: string): string {
+    const date = new Date(
+      dateString.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')
+    );
+    return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  }
+
   getDados() {
     var token = sessionStorage.getItem('token') ?? '';
 

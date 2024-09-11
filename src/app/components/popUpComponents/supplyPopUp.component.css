@@ -6,15 +6,21 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    padding: 0 20px; /* Adiciona padding para telas menores */
+    box-sizing: border-box;
 }
 
 .form-container {
     background-color: #344E41; /* Cor de fundo escura */
     border-radius: 8px;
     padding: clamp(20px, 5vw, 40px);
-    height: auto; /* Ajuste automático da altura */
+    width: 100%; /* Largura total disponível */
+    max-width: 800px; /* Limite de largura máxima */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     position: relative;
+    height: auto; /* Ajuste automático da altura */
+    box-sizing: border-box;
+    overflow:auto;
 }
 
 .form-header {
@@ -42,7 +48,7 @@ body {
 }
 
 .form-group {
-    margin-bottom: clamp(10px, 5vw, 6px);
+    margin-bottom: clamp(10px, 2vw, 20px); /* Aumentei o espaçamento entre os campos */
 }
 
 .form-group label {
@@ -54,11 +60,12 @@ body {
 
 .form-group input {
     width: 100%;
-    padding: clamp(6px, 1vw, 10px);
+    padding: clamp(6px, 1vw, 12px);
     border-radius: 4px;
     border: none;
     font-size: clamp(12px, 1.5vw, 16px);
     background-color: #f7f7e8; /* Cor clara para o campo de entrada */
+    box-sizing: border-box;
 }
 
 .submit-button {
@@ -77,6 +84,17 @@ body {
     background-color: #5e8e5e;
 }
 
-.mat-mdc-dialog-surface{
+.mat-mdc-dialog-surface {
     height: auto !important;
+}
+
+.error-message {
+    color: rgb(255, 0, 0);
+}
+
+/* Estilos de mídia para melhorar a responsividade */
+@media (max-width: 768px) {
+    .form-container {
+        max-width: 100%; /* Ajusta para tela menor */
+    }
 }

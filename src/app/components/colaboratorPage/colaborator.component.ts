@@ -26,12 +26,10 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
-    
   ],
 })
 export class ColaboratorComponent {
   displayedColumns: string[] = [
-  
     'nome',
     'email',
     'telefone',
@@ -67,16 +65,36 @@ export class ColaboratorComponent {
       }
     });
   }
-  
+
   formatDate(dateString: string): string {
-    const date = new Date(dateString.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'));
-    return date.toLocaleDateString();
+    const date = new Date(
+      dateString.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3')
+    );
+    return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
   }
 
+  formatCPF(cpf: string): string {
+    if (!cpf) return '';
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  formatPhone(phone: string): string {
+    if (!phone) return '';
+
+    phone = phone.replace(/\D/g, '');
+
+    if (phone.length === 11) {
+      return phone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    } else if (phone.length === 10) {
+      return phone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+    }
+
+    return phone;
   }
 
   deleteColab(colaborator: ColaboratorInterface) {
@@ -111,8 +129,8 @@ export class ColaboratorComponent {
 
   onRowClick(row: any): void {
     this.selectedItem = row;
-    console.log(this.selectedItem)
-    this.showToast("Item Selecionado!")
+    console.log(this.selectedItem);
+    this.showToast('Item Selecionado!');
   }
 
   doStuff() {
@@ -158,7 +176,7 @@ export class ColaboratorComponent {
 
     dialogRef.afterClosed().subscribe(() => {
       this.selectedItem = null;
-      this.getColaborators(); 
+      this.getColaborators();
     });
   }
 
@@ -172,7 +190,7 @@ export class ColaboratorComponent {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.getColaborators(); 
+      this.getColaborators();
     });
   }
 

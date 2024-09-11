@@ -3,6 +3,8 @@ import { CommonModule } from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { LoginService } from "../Services/login.service";
 import Swal from "sweetalert2";
+import { ColaboratorService } from "../Services/colaborator.service";
+import { ColaboratorInterface } from "../Interface/ColaboratorInterface";
 
 @Component({
     selector:'app-home',
@@ -15,16 +17,25 @@ import Swal from "sweetalert2";
 export class HomeComponent implements OnInit {
    
     userAuth = sessionStorage.getItem('token')
+    user : ColaboratorInterface
     
-    constructor(private loginService : LoginService){}
+    constructor(private loginService : LoginService,private colabServ : ColaboratorService){}
  
     ngOnInit() {
-        
+        this.getDados()
     }
 
+    getDados() {
+      var token = sessionStorage.getItem('token') ?? '';
+  
+      this.colabServ.getColaboratorById(token).subscribe((res) => {
+        console.log(res)
+        this.user = res;
+      });
+    }
 
     isToken() : boolean{
-      return this.userAuth === '81280782-61b0-45bf-86b9-6589cf5a8c5f'
+      return this.user.nome === 'admin'
     }
     
     

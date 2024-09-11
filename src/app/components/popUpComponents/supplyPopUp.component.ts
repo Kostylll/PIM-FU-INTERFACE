@@ -11,11 +11,13 @@ import {
 import Swal from 'sweetalert2';
 import { ColaboratorInterface } from '../../Interface/ColaboratorInterface';
 import { ColaboratorService } from '../../Services/colaborator.service';
+import { CpfValidator } from '../../Services/CpfValidator';
+
 
 @Component({
   selector: 'app-SupplyPopUp',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatDialogModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatDialogModule,],
   templateUrl: './supplyPopUp.component.html',
   styleUrls: ['./supplyPopUp.component.css'],
 })
@@ -41,11 +43,23 @@ export class SupplyPopUpComponent implements OnInit {
         nome : new FormControl(null,[Validators.required]), 
         email: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.pattern("[^ @]*@[^ @]*")]),
         telefone : new FormControl(null,[Validators.required]),
-        cpf : new FormControl(null,[Validators.required]),
+        cpf : new FormControl(null,[Validators.required, CpfValidator.validarCpf]),
         endereco : new FormControl(null,[Validators.required]),
         data_Nascimento : new FormControl(null,[Validators.required]),
     })
   }
+
+  onSubmit(){
+    if(this.register.valid){
+      this.confirmRegister()
+      
+    }
+    else{
+      console.log("Formulário Inválido")
+    }
+  }
+
+
 
   confirmRegister(){
     Swal.fire({
@@ -62,6 +76,7 @@ export class SupplyPopUpComponent implements OnInit {
     }).then((res) => {
       if(res.isConfirmed) {
         this.registerColaborator()
+        this.dialogRef.close();
       }
     })
   }

@@ -6,17 +6,19 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from "./components/loginPage/login.component";
 import { RouterModule } from "@angular/router";
 import { routes } from "./app.routes";
-import { ColaboratorComponent } from "./colaboratorPage/colaborator.component";
+
 import { ProductComponent } from "./components/productPage/product.component";
 import { SalesComponent } from "./components/salesPage/sales.compoment";
 import { UserPageComponent } from "./components/userPage/userPage.component";
-import { SupplyPopUpComponent } from "./popUpComponents/supplyPopUp.component";
+
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { ColaboratorComponent } from "./components/colaboratorPage/colaborator.component";
+import { SupplyPopUpComponent } from "./components/popUpComponents/supplyPopUp.component";
 
 @NgModule({
     declarations:[
@@ -40,7 +42,7 @@ import { MatSortModule } from '@angular/material/sort';
         MatPaginatorModule,
         MatTableModule,
         MatSortModule,
-        
+   
             
     ],
     providers : [

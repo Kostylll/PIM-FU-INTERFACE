@@ -1,34 +1,98 @@
 <div class="form-container">
-    <div class="form-header">
-        <h2>{{TitleText}}</h2>
-        <button class="close-button" (click)="onClose()">&times;</button>
+  <div class="form-header">
+    <h2>{{ TitleText }}</h2>
+    <button class="close-button" (click)="onClose()">&times;</button>
+  </div>
+  <form [formGroup]="register">
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" formControlName="nome" />
+      <div
+        *ngIf="register.get('nome')?.touched && register.get('nome')?.invalid"
+        class="error-message"
+      >
+        Nome é obrigatório.
+      </div>
     </div>
-    <form [formGroup]="register">
-        <div class="form-group">
-            <label for="razao-social">Nome</label>
-            <input type="text" id="type" name="type"  formControlName="nome"  id="type">
-        </div>
-        <div class="form-group">
-            <label for="cnpj">Email</label>
-            <input type="text" id="cnpj" name="cnpj"  formControlName="email">
-        </div>
-        <div class="form-group">
-            <label for="produto">Telefone</label>
-            <input type="text" id="produto" name="produto"  formControlName="telefone">
-        </div>
-        <div class="form-group">
-            <label for="quantidade">CPF</label>
-            <input type="text" id="quantidade" name="quantidade"   formControlName="cpf">
-        </div>
-        <div class="form-group">
-            <label for="quantidade">Endereço</label>
-            <input type="text" id="quantidade" name="quantidade"   formControlName="endereco">
-        </div>
-        <div class="form-group">
-            <label for="quantidade">Data Nascimento</label>
-            <input type="date" id="quantidade" name="quantidade"   formControlName="data_Nascimento">
-        </div>
-        
-        <button type="submit" class="submit-button" (click)="confirmRegister()">{{buttonText}}</button>
-    </form>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" />
+      <div
+        *ngIf="register.get('email')?.touched && register.get('email')?.invalid"
+        class="error-message"
+      >
+        Email inválido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="telefone">Telefone</label>
+      <input type="text" id="telefone" formControlName="telefone" />
+      <div
+        *ngIf="
+          register.get('telefone')?.touched && register.get('telefone')?.invalid
+        "
+        class="error-message"
+      >
+        Telefone é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cpf">CPF</label>
+      <input type="text" id="cpf" formControlName="cpf" />
+      <div
+        *ngIf="register.get('cpf')?.touched && register.get('cpf')?.errors?.['required']"
+        class="error-message"
+      >
+        CPF é obrigatório.
+      </div>
+      <div
+        *ngIf="register.get('cpf')?.touched && register.get('cpf')?.errors?.['cpfInvalido']"
+        class="error-message"
+      >
+        CPF inválido.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="endereco">Endereço</label>
+      <input type="text" id="endereco" formControlName="endereco" />
+      <div
+        *ngIf="
+          register.get('endereco')?.touched && register.get('endereco')?.invalid
+        "
+        class="error-message"
+      >
+        Endereço é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dataNascimento">Data Nascimento</label>
+      <input
+        type="date"
+        id="dataNascimento"
+        formControlName="data_Nascimento"
+      />
+      <div
+        *ngIf="
+          register.get('data_Nascimento')?.touched &&
+          register.get('data_Nascimento')?.invalid
+        "
+        class="error-message"
+      >
+        Data de Nascimento é obrigatória.
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="submit-button"
+      [disabled]="register.invalid"
+      (click)="onSubmit()"
+    >
+      {{ buttonText }}
+    </button>
+  </form>
 </div>
