@@ -1,37 +1,77 @@
-<title>Produto</title>
-<div class="container">
-  <nav class="navbar">
-    <div class="logo">
-      <img src="/assets/logo2.png" alt="" />
-      <img src="/assets/logo.png" alt="Logo da Simple Plan" />
-    </div>
-    <div class="saudacoes">
-      <button routerLink="/home">
-        <img style="width: 50px" src="/assets/home.png" alt="" />
-      </button>
-    </div>
-  </nav>
-  <div class="card-backgrond">
-    <div class="card">
-      <div class="card-body">
-        <div class="table-container">
-          <div class="btn-container">
-            <button class="btn-top-left">Adicionar Produto</button>
-            <button class="btn-top-left2">Alterar Produto</button>
-
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Modelo</th>
-                  <th scope="col">Cor</th>
-                  <th scope="col">Tipo</th>
-                  <th scope="col">Preço</th>
-                  <th scope="col">Descrição</th>
-                  <th></th>
-                </tr>
-              </thead>
-            </table>
+<nav class="navbar">
+  <div class="logo">
+    <img src="/assets/logo2.png" alt="" />
+    <img src="/assets/logo.png" alt="Logo da Simple Plan" />
+  </div>
+  <div class="saudacoes">
+    <button routerLink="/home">
+      <img style="width: 50px" src="/assets/home.png" alt="" />
+    </button>
+  </div>
+</nav>
+<div class="card-backgrond">
+  <div class="card">
+    <div class="card-body">
+      <div class="container">
+        <div class="search-container">
+          <div class="button-group">
+            <button class="btn"><span class="icon">➕</span> Adicionar</button>
+            <button class="btn"><span class="icon">✏️</span> Editar</button>
+            <input
+              class="search-bar"
+              matInput
+              type="text"
+              placeholder="Pesquisar Produto"
+            />
+            <span class="search-icon">🔍</span>
           </div>
+        </div>
+
+        <div class="table-container">
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            class="mat-elevation-z8"
+            cellspacing="10"
+            id="datatables"
+          >
+          <ng-container matColumnDef="nome_Empresa">
+            <th mat-header-cell *matHeaderCellDef> Nome Empresa </th>
+            <td mat-cell *matCellDef="let product">{{ product.nome_Empresa }}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="nome_Produto">
+            <th mat-header-cell *matHeaderCellDef> Nome Produto </th>
+            <td mat-cell *matCellDef="let product">{{ product.nome_Produto }}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="quantidade">
+            <th mat-header-cell *matHeaderCellDef> Quantidade </th>
+            <td mat-cell *matCellDef="let product">{{ product.quantidade }}</td>
+          </ng-container>
+          
+
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let product">
+                <button style="background: transparent; border: none">
+                  <fa-icon
+                    style="color: rgb(163, 26, 26); cursor: pointer"
+                    [icon]="faTrash"
+                  ></fa-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+
+          <mat-paginator
+            class="paginator"
+            [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons
+          ></mat-paginator>
         </div>
       </div>
     </div>

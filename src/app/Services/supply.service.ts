@@ -23,7 +23,7 @@ export class SupplyService{
 
 
     getAll() : Observable<SupplyInterface[]>{
-        return this.http.get<SupplyInterface[]>(this.url + 'api/Colaborator',httpOptions)
+        return this.http.get<SupplyInterface[]>(this.url + 'api/Supply',httpOptions)
     }
 
 }

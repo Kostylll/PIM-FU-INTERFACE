@@ -1,112 +1,63 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CarInterface } from '../../Interface/CarInterface';
 import { CarService } from '../../Services/car.service';
 import { MatDialog } from '@angular/material/dialog';
 
 import Swal from 'sweetalert2';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CarTable } from '../../Interface/Table/CarTable';
 import { SupplyPopUpComponent } from '../popUpComponents/supplyPopUp.component';
+import { ProductTable } from '../../Interface/Table/ProductTable';
+import { ProductInterface } from '../../Interface/ProductInterface';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { SupplyService } from '../../Services/supply.service';
+import { ProductService } from '../../Services/product.service';
+import { MatSortModule } from '@angular/material/sort';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 declare const $: any;
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [
+    CommonModule,
+    RouterLink,
+    FontAwesomeModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+  ],
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
-  selectedItem: any;
-  product: CarInterface[] = [];
-  dataTable: CarTable;
-  dataSource = new MatTableDataSource<CarInterface>([]);
+  displayedColumns: string[] = ['nome_Empresa', 'nome_Produto', 'quantidade'];
+  dataSource = new MatTableDataSource<any>([]);
 
-  constructor(private carServ: CarService, private dialog: MatDialog) {}
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  selectedItem: any;
+  dataTable: ProductTable;
+  products : ProductInterface;
+  product: ProductInterface[] = [];
+  faTrash = faTrash;
+
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.getCars();
-    this.dataTable = {
-      header: ['modelo', 'cor', 'tipo', 'preço', 'descrição'],
-      footer: ['modelo', 'cor', 'tipo', 'preço', 'descrição'],
-      dataRows: this.product
-    };
+    this.getSupply()
   }
 
-  getCars() {
-    this.carServ.getCars().subscribe((res) => {
-      if (res) {
-        let dataCar = res;
-        this.dataTable = {
-          header: ['modelo', 'cor', 'tipo', 'preço', 'descrição'],
-          footer: ['modelo', 'cor', 'tipo', 'preço', 'descrição'],
-          dataRows: dataCar,
-        };
-      }
-    });
-  }
-
-  onSelected(car: any): void {
-    this.selectedItem = car;
-    console.log(this.selectedItem);
-  }
-
-  doStuff() {
-    console.log('working');
-  }
-
-  showToast(message: string) {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-      toast.classList.add('show');
-    }, 5);
-
-    setTimeout(() => {
-      toast.classList.remove('show');
-      setTimeout(() => {
-        document.body.removeChild(toast);
-      }, 500);
-    }, 1500);
-  }
-
-  openModal() {
-    if (!this.selectedItem) {
-      this.showAlert();
-      return;
-    }
-    const dialogRef = this.dialog.open(SupplyPopUpComponent, {
-      width: '80vw',
-      height: '80vh',
-      maxWidth: '36vw',
-      maxHeight: '62vh',
-      panelClass: 'scrollable-dialog',
-      data: this.selectedItem,
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      this.selectedItem = null;
-    });
-  }
-
-  showAlert() {
-    Swal.fire({
-      title: 'Selecione algum campo para ser editado!',
-      icon: 'warning',
-      iconColor: '#DAD7CD',
-      confirmButtonText: 'OK',
-      customClass: {
-        popup: 'custom-popup',
-        confirmButton: 'custom-confirm-button',
-        icon: 'custom-icon',
-      },
+  getSupply() {
+    this.productService.getProduct().subscribe((res) => {
+      console.log(res)
+      this.product = res;
+      this.dataSource = new MatTableDataSource(this.product);
+      this.dataSource.paginator = this.paginator;
     });
   }
 }

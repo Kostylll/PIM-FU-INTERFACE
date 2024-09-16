@@ -45,28 +45,28 @@
             <ng-container matColumnDef="nome_Empresa">
               <th mat-header-cell  *matHeaderCellDef>Nome Empresa</th>
               <td mat-cell *matCellDef="let sales">
-              
+              {{sales.nome_Empresa}}
               </td>
             </ng-container>
 
             <ng-container matColumnDef="produto_Vendido">
               <th mat-header-cell *matHeaderCellDef>Produto Vendido</th>
               <td mat-cell *matCellDef="let sales">
-               
+               {{sales.produto_Vendido}}
               </td>
             </ng-container>
 
             <ng-container matColumnDef="quantidade_Vendida">
               <th mat-header-cell *matHeaderCellDef>Quantidade Vendida</th>
               <td mat-cell *matCellDef="let sales">
-               
+               {{sales.quantidade_Vendida}}
               </td>
             </ng-container>
 
             <ng-container matColumnDef="local_Vendido">
               <th mat-header-cell *matHeaderCellDef>Local Vendido</th>
               <td mat-cell *matCellDef="let sales">
-             
+              {{sales.local_Vendido}}
               </td>
             </ng-container>
 

@@ -48,6 +48,9 @@ export class SupplyComponent {
 
     constructor(private supplyService : SupplyService) {}
     
+    ngOnInit(){
+        this.getSupply()
+    }
 
      getSupply(){
         this.supplyService.getAll().subscribe((res) =>{

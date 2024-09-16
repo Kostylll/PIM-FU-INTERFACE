@@ -27,6 +27,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatSortModule,
   ],
+  
 })
 export class ColaboratorComponent {
   displayedColumns: string[] = [
