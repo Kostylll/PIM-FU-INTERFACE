@@ -11,6 +11,9 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { ColaboratorInterface } from "../../Interface/ColaboratorInterface";
 import { ColaboratorTable } from "../../Interface/Table/ColaboratorTable";
+import { SupplyTable } from "../../Interface/Table/SupplyTable";
+import { SupplyInterface } from "../../Interface/SupplyInterface";
+import { SupplyService } from "../../Services/supply.service";
 
 @Component({
     selector: 'app-supply',
@@ -28,27 +31,32 @@ import { ColaboratorTable } from "../../Interface/Table/ColaboratorTable";
 export class SupplyComponent {
 
     displayedColumns: string[] = [
-        'id',
-        'nome',
-        'email',
-        'telefone',
-        'cpf',
-        'delete',
+     
+        'nome_Empresa' ,
+        'cnpj' ,
+        'endereco' ,
+        'telefone' ,
       ];
       dataSource = new MatTableDataSource<any>([]);
     
       @ViewChild(MatPaginator) paginator: MatPaginator;
     
       selectedItem: any;
-      dataTable: ColaboratorTable;
-      product: ColaboratorInterface[] = [];
+      dataTable: SupplyTable;
+      product: SupplyInterface[] = [];
       faTrash = faTrash;
 
-    constructor(private carService : CarService) {}
+    constructor(private supplyService : SupplyService) {}
     
-     ngOnInit(): void {
-     
+
+     getSupply(){
+        this.supplyService.getAll().subscribe((res) =>{
+            this.product = res;
+            this.dataSource = new MatTableDataSource(this.product);
+            this.dataSource.paginator = this.paginator;
+        })
      }
+     
  
  
 

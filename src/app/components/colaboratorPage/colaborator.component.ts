@@ -182,10 +182,10 @@ export class ColaboratorComponent {
 
   openModalRegister() {
     const dialogRef = this.dialog.open(SupplyPopUpComponent, {
-      width: '80vw',
-      height: '80vh',
+      width: '100vw',
+      height: '100vh',
       maxWidth: '36vw',
-      maxHeight: '62vh',
+      maxHeight: '100vh',
       panelClass: 'scrollable-dialog',
     });
 

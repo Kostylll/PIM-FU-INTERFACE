@@ -1,5 +1,8 @@
-import { HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { ColaboratorInterface } from "../Interface/ColaboratorInterface";
+import { SupplyInterface } from "../Interface/SupplyInterface";
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -14,7 +17,13 @@ const httpOptions = {
 
 export class SupplyService{
 
-    url = 'https://localhost:44348/'
+    url = 'https://localhost:44335/'
 
+    constructor(private http : HttpClient){}
+
+
+    getAll() : Observable<SupplyInterface[]>{
+        return this.http.get<SupplyInterface[]>(this.url + 'api/Colaborator',httpOptions)
+    }
 
 }

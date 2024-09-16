@@ -37,7 +37,7 @@
             type="text"
             id="cpf"
             name="cpf"
-            [ngModel]="loggedColaborator.cpf"
+            [ngModel]="formatCPF(loggedColaborator.cpf)"
             disabled="true"
           />
         </div>
@@ -47,7 +47,7 @@
             type="text"
             id="telefone"
             name="telefone"
-            [ngModel]="loggedColaborator.telefone"
+            [ngModel]="formatPhone(loggedColaborator.telefone)"
             disabled="true"
           />
         </div>

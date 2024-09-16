@@ -13,9 +13,9 @@ body {
 .form-container {
     background-color: #344E41; /* Cor de fundo escura */
     border-radius: 8px;
-    padding: clamp(20px, 5vw, 40px);
+    padding: clamp(20px, 5vw, 50px);
     width: 100%; /* Largura total disponível */
-    max-width: 800px; /* Limite de largura máxima */
+    max-width: 1000px; /* Limite de largura máxima */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     position: relative;
     height: auto; /* Ajuste automático da altura */

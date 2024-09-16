@@ -32,6 +32,26 @@ export class UserPageComponent implements OnInit {
     return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
   }
 
+  formatCPF(cpf: string): string {
+    if (!cpf) return '';
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  }
+
+  formatPhone(phone: string): string {
+    if (!phone) return '';
+
+    phone = phone.replace(/\D/g, '');
+
+    if (phone.length === 11) {
+      return phone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    } else if (phone.length === 10) {
+      return phone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+    }
+
+    return phone;
+  }
+
+
   getDados() {
     var token = sessionStorage.getItem('token') ?? '';
 

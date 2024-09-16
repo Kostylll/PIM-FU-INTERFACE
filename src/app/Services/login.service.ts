@@ -1,66 +1,61 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { LoginInterface } from "../Interface/LoginInterface";
-import { Observable } from "rxjs";
-import { Router } from '@angular/router'
-import Swal from "sweetalert2";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { LoginInterface } from '../Interface/LoginInterface';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 const httpOptions = {
-    headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-    })
-}
-
-
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+};
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
+export class LoginService {
+  url = 'https://localhost:44335/';
+  private userAuth: string | null = null;
 
-export class LoginService{
+  constructor(private http: HttpClient, private router: Router) {}
 
-    url = 'https://localhost:44335/'
-    private userAuth : string | null = null
+  sendLogin(login: LoginInterface): Observable<LoginInterface> {
+    return this.http.post<LoginInterface>(
+      this.url + 'api/Login',
+      login,
+      httpOptions
+    );
+  }
 
-    constructor(private http : HttpClient, private router : Router) {}
+  setToken(userAuth: string) {
+    this.userAuth = userAuth;
+    sessionStorage.setItem('token', userAuth);
+    this.router.navigateByUrl('/home');
+  }
 
-    sendLogin(login : LoginInterface) : Observable<LoginInterface>{
-        return this.http.post<LoginInterface>(this.url + 'api/Login',login, httpOptions)
+  getToken(): string | null {
+    return this.userAuth || sessionStorage.getItem('token');
+  }
+
+  logoutUser() {
+    Swal.fire;
+
+    sessionStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
+  isAuthenticated(): boolean {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      return !!sessionStorage.getItem('token');
     }
+    return false;
+  }
 
-    setToken(userAuth : string){
-        this.userAuth = userAuth
-        sessionStorage.setItem('token',userAuth);
-        this.router.navigateByUrl('/home');
+  canAccess() {
+    if (!this.isAuthenticated()) {
+      this.router.navigate(['/login/enter']);
     }
-
-    getToken() : string | null{
-        return this.userAuth || sessionStorage.getItem('token')
-    }
-
-    logoutUser(){
-        Swal.fire
-
-        sessionStorage.removeItem('token')
-        this.router.navigate(['/login'])
-    }
-
-    
-    isAuthenticated(): boolean {
-        if (typeof window !== 'undefined' && window.sessionStorage) {
-          return !!sessionStorage.getItem('token');
-        }
-        return false;
-      }
-      
-  
-      canAccess() {
-        if (!this.isAuthenticated()) {
-            this.router.navigate(['/login/enter']);
-        }
-        return true;
-    }
-  
-
-
+    return true;
+  }
 }
