@@ -23,11 +23,11 @@ export class ColaboratorService{
 
 
     getAll() : Observable<ColaboratorInterface[]>{
-        return this.http.get<ColaboratorInterface[]>(this.url + 'api/Colaborator',httpOptions)
+        return this.http.get<ColaboratorInterface[]>(this.url + 'api/Colaborador',httpOptions)
     }
     
     registerColaborator(colaborator : ColaboratorInterface) : Observable<ColaboratorInterface>{
-        return this.http.post<ColaboratorInterface>(this.url + 'api/Colaborator' ,colaborator,httpOptions)
+        return this.http.post<ColaboratorInterface>(this.url + 'api/Colaborador' ,colaborator,httpOptions)
     }
 
     deleteColaborator(id : string){
@@ -35,7 +35,7 @@ export class ColaboratorService{
     }
 
     getColaboratorById(token : string) : Observable<ColaboratorInterface>{
-        return this.http.get<ColaboratorInterface>(this.url + 'api/Colaborator/' + token,httpOptions)
+        return this.http.get<ColaboratorInterface>(this.url + 'api/Colaborador/' + token,httpOptions)
     }
 
 }
