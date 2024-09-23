@@ -31,11 +31,14 @@ export class ColaboratorService{
     }
 
     deleteColaborator(id : string){
-        return this.http.delete<ColaboratorInterface>(this.url + 'api/Colaborator?id=' + id)
+        return this.http.delete<ColaboratorInterface>(this.url + 'api/Colaborador?id=' + id)
     }
 
     getColaboratorById(token : string) : Observable<ColaboratorInterface>{
         return this.http.get<ColaboratorInterface>(this.url + 'api/Colaborador/' + token,httpOptions)
     }
 
+    updateColaborator(colaborador : ColaboratorInterface): Observable<ColaboratorInterface>{
+        return this.http.put<ColaboratorInterface>(this.url + 'api/Colaborador/?id=' + colaborador.id , colaborador, httpOptions)
+    }
 }

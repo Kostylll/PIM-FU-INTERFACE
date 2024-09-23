@@ -9,7 +9,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ColaboratorInterface } from '../../Interface/ColaboratorInterface';
 import { ColaboratorTable } from '../../Interface/Table/ColaboratorTable';
 import { ColaboratorService } from '../../Services/colaborator.service';
-import { SupplyPopUpComponent } from '../popUpComponents/supplyPopUp.component';
+import { SupplyPopUpComponent } from '../popUpComponents/colaboratorPopUp.component';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -122,6 +122,7 @@ export class ColaboratorComponent {
               icon: 'custom-icon',
             },
           });
+          this.dialog.closeAll()
           this.getColaborators();
         });
       }
@@ -162,10 +163,10 @@ export class ColaboratorComponent {
       return;
     }
     const dialogRef = this.dialog.open(SupplyPopUpComponent, {
-      width: '80vw',
-      height: '80vh',
+      width: '100vw',
+      height: '100vh',
       maxWidth: '36vw',
-      maxHeight: '62vh',
+      maxHeight: '100vh',
       panelClass: 'scrollable-dialog',
       data: this.selectedItem,
     });

@@ -18,17 +18,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { ColaboratorComponent } from "./components/colaboratorPage/colaborator.component";
-import { SupplyPopUpComponent } from "./components/popUpComponents/supplyPopUp.component";
+import { SupplyPopUpComponent } from "./components/popUpComponents/colaboratorPopUp.component";
 
 @NgModule({
     declarations:[
-        HomeComponent,
-        LoginComponent,
-        ColaboratorComponent,
-        ProductComponent,
-        SalesComponent,
-        UserPageComponent,
-        SupplyPopUpComponent
+     
     ],
     
     imports:[
@@ -51,7 +45,7 @@ import { SupplyPopUpComponent } from "./components/popUpComponents/supplyPopUp.c
 
     exports:[RouterModule],
     
-    bootstrap:[HomeComponent]
+    bootstrap:[]
 
 })
 

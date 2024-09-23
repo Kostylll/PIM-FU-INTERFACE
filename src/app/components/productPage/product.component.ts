@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CarTable } from '../../Interface/Table/CarTable';
-import { SupplyPopUpComponent } from '../popUpComponents/supplyPopUp.component';
+import { SupplyPopUpComponent } from '../popUpComponents/colaboratorPopUp.component';
 import { ProductTable } from '../../Interface/Table/ProductTable';
 import { ProductInterface } from '../../Interface/ProductInterface';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
