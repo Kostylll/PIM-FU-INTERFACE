@@ -9,7 +9,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ColaboratorInterface } from '../../Interface/ColaboratorInterface';
 import { ColaboratorTable } from '../../Interface/Table/ColaboratorTable';
 import { ColaboratorService } from '../../Services/colaborator.service';
-import { SupplyPopUpComponent } from '../popUpComponents/colaboratorPopUp.component';
+import { ColaboratorPopUpComponent } from '../popUpComponents/colaboratorPopUp.component';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -162,7 +162,7 @@ export class ColaboratorComponent {
       this.showAlert();
       return;
     }
-    const dialogRef = this.dialog.open(SupplyPopUpComponent, {
+    const dialogRef = this.dialog.open(ColaboratorPopUpComponent, {
       width: '100vw',
       height: '100vh',
       maxWidth: '36vw',
@@ -183,7 +183,7 @@ export class ColaboratorComponent {
   }
 
   openModalRegister() {
-    const dialogRef = this.dialog.open(SupplyPopUpComponent, {
+    const dialogRef = this.dialog.open(ColaboratorPopUpComponent, {
       width: '100vw',
       height: '100vh',
       maxWidth: '36vw',

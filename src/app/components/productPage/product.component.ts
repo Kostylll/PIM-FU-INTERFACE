@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CarInterface } from '../../Interface/CarInterface';
-import { CarService } from '../../Services/car.service';
+
 import { MatDialog } from '@angular/material/dialog';
 
 import Swal from 'sweetalert2';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { CarTable } from '../../Interface/Table/CarTable';
-import { SupplyPopUpComponent } from '../popUpComponents/colaboratorPopUp.component';
+import { ColaboratorPopUpComponent } from '../popUpComponents/colaboratorPopUp.component';
 import { ProductTable } from '../../Interface/Table/ProductTable';
 import { ProductInterface } from '../../Interface/ProductInterface';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';

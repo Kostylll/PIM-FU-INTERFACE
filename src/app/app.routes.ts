@@ -8,7 +8,7 @@ import { UserPageComponent } from './components/userPage/userPage.component';
 
 import { AuthGuard } from './Services/authGuard.service';
 import { ColaboratorComponent } from './components/colaboratorPage/colaborator.component';
-import { SupplyPopUpComponent } from './components/popUpComponents/colaboratorPopUp.component';
+import { ColaboratorPopUpComponent } from './components/popUpComponents/colaboratorPopUp.component';
 import { SupplyComponent } from './components/supplyPage/supply.component';
 
 export const routes: Routes = [
@@ -53,7 +53,7 @@ export const routes: Routes = [
     },
     {
         path:'popUp',
-        component: SupplyPopUpComponent,
+        component: ColaboratorPopUpComponent,
         canActivate : [AuthGuard]
     }
 ];

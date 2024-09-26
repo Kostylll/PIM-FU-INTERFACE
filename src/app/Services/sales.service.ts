@@ -24,4 +24,20 @@ export class SalesService {
         return this.http.get<SalesInterface[]>(this.url + 'api/Sales', httpOptions)
     }
 
+    registerSales(sale : SalesInterface) : Observable<SalesInterface>{
+        return this.http.post<SalesInterface>(this.url + 'api/Sales' ,sale,httpOptions)
+    }
+
+    deleteSales(id : string){
+        return this.http.delete<SalesInterface>(this.url + 'api/Sales?id=' + id)
+    }
+
+    getSalesById(token : string) : Observable<SalesInterface>{
+        return this.http.get<SalesInterface>(this.url + 'api/Sales/' + token,httpOptions)
+    }
+
+    updateSales(sale : SalesInterface): Observable<SalesInterface>{
+        return this.http.put<SalesInterface>(this.url + 'api/Sales/?id=' + sale.id , sale, httpOptions)
+    }
+
 }

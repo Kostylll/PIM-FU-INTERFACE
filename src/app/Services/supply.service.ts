@@ -26,4 +26,20 @@ export class SupplyService{
         return this.http.get<SupplyInterface[]>(this.url + 'api/Supply',httpOptions)
     }
 
+    registerSupply(sale : SupplyInterface) : Observable<SupplyInterface>{
+        return this.http.post<SupplyInterface>(this.url + 'api/Supply' ,sale,httpOptions)
+    }
+
+    deleteSupply(id : string){
+        return this.http.delete<SupplyInterface>(this.url + 'api/Supply?id=' + id)
+    }
+
+    getSupplyById(token : string) : Observable<SupplyInterface>{
+        return this.http.get<SupplyInterface>(this.url + 'api/Supply/' + token,httpOptions)
+    }
+
+    updateSupply(supply : SupplyInterface): Observable<SupplyInterface>{
+        return this.http.put<SupplyInterface>(this.url + 'api/Supply/?id=' + supply.id , supply, httpOptions)
+    }
+
 }

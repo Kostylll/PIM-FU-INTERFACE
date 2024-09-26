@@ -22,4 +22,21 @@ export class ProductService {
         return this.http.get<ProductInterface[]>(this.url + 'api/Products' , httpOptions)
     }
     
+    registerProduct(product : ProductInterface) : Observable<ProductInterface>{
+        return this.http.post<ProductInterface>(this.url + 'api/Products' ,product,httpOptions)
+    }
+
+    deleteProduct(id : string){
+        return this.http.delete<ProductInterface>(this.url + 'api/Products?id=' + id)
+    }
+
+    getProductById(token : string) : Observable<ProductInterface>{
+        return this.http.get<ProductInterface>(this.url + 'api/Products/' + token,httpOptions)
+    }
+
+    updateProduct(product : ProductInterface): Observable<ProductInterface>{
+        return this.http.put<ProductInterface>(this.url + 'api/Products/?id=' + product.id , product, httpOptions)
+    }
+
+
 }

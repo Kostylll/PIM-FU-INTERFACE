@@ -8,13 +8,13 @@ import { ColaboratorService } from '../../Services/colaborator.service';
 import { CpfValidator } from '../../Services/CpfValidator';
 
 @Component({
-  selector: 'app-SupplyPopUp',
+  selector: 'app-ColaboratorPopUp',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule, MatDialogModule],
   templateUrl: './colaboratorPopUp.component.html',
   styleUrls: ['./colaboratorPopUp.component.css'],
 })
-export class SupplyPopUpComponent implements OnInit {
+export class ColaboratorPopUpComponent implements OnInit {
   edit: boolean = false;
   colaborator: ColaboratorInterface;
   TitleText: string = 'Adicionar Colaborador';
@@ -24,7 +24,7 @@ export class SupplyPopUpComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<SupplyPopUpComponent>,
+    private dialogRef: MatDialogRef<ColaboratorPopUpComponent>,
     private colabServ: ColaboratorService
   ) {
     this.colaborator = this.data;
@@ -33,20 +33,20 @@ export class SupplyPopUpComponent implements OnInit {
   ngOnInit() {
     this.initializeForm();
 
-    // Verifica se há dados do colaborador, caso sim, ativa o modo de edição
+
     if (this.colaborator) {
       this.edit = true;
       this.TitleText = 'Editar Colaborador';
       this.buttonText = 'Salvar Alterações';
+     
 
-      // Preencher o formulário com os dados para edição
       this.register.patchValue(this.colaborator);
     } else {
       this.edit = false;
     }
   }
 
-  // Inicializa o formulário com os validadores
+
   initializeForm() {
     this.register = new FormGroup({
       nome: new FormControl(null, [Validators.required]),
