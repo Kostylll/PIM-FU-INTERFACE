@@ -63,7 +63,6 @@ export class ColaboratorPopUpComponent implements OnInit {
     
   }
 
-
   onSubmit() {
     if (this.register.valid) {
       this.confirmRegister();

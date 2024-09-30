@@ -60,11 +60,25 @@ export class SupplyComponent {
         })
      }
      
-     formatCNPJ(cnpj: string): string {
+   formatCNPJ(cnpj: string): string {
         if (!cnpj) return '';
         return cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
     }
 
+    formatPhone(phone: string): string {
+      if (!phone) return '';
+  
+      phone = phone.replace(/\D/g, '');
+  
+      if (phone.length === 11) {
+        return phone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+      } else if (phone.length === 10) {
+        return phone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+      }
+  
+      return phone;
+    }
+  
     
     applyFilter(event: Event) {
         const filterValue = (event.target as HTMLInputElement).value;
@@ -111,7 +125,7 @@ export class SupplyComponent {
           if (res.isConfirmed) {
             this.supplyService.deleteSupply(supply.id).subscribe(() => {
               Swal.fire({
-                title: 'Colaborador Desligado!',
+                title: 'Fornecedor Apagado!',
                 icon: 'success',
                 customClass: {
                   popup: 'custom-popup',
