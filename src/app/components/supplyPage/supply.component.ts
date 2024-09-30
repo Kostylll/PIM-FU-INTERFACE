@@ -10,6 +10,9 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { SupplyTable } from "../../Interface/Table/SupplyTable";
 import { SupplyInterface } from "../../Interface/SupplyInterface";
 import { SupplyService } from "../../Services/supply.service";
+import Swal from "sweetalert2";
+import { MatDialog } from "@angular/material/dialog";
+import { SupplyPopUpComponent } from "../popUpComponents/supplyPopUp/supplyPopUp.component";
 
 @Component({
     selector: 'app-supply',
@@ -32,6 +35,7 @@ export class SupplyComponent {
         'cnpj' ,
         'endereco' ,
         'telefone' ,
+        'delete'
       ];
       dataSource = new MatTableDataSource<any>([]);
     
@@ -42,7 +46,7 @@ export class SupplyComponent {
       product: SupplyInterface[] = [];
       faTrash = faTrash;
 
-    constructor(private supplyService : SupplyService) {}
+    constructor(private supplyService : SupplyService,private dialog: MatDialog) {}
     
     ngOnInit(){
         this.getSupply()
@@ -56,9 +60,127 @@ export class SupplyComponent {
         })
      }
      
- 
- 
+     formatCNPJ(cnpj: string): string {
+        if (!cnpj) return '';
+        return cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+    }
 
-     
     
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+    
+    onRowClick(row: any): void {
+        this.selectedItem = row;
+        console.log(this.selectedItem);
+        this.showToast('Item Selecionado!');
+      }
+     
+      showToast(message: string) {
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+    
+        setTimeout(() => {
+          toast.classList.add('show');
+        }, 5);
+    
+        setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => {
+            document.body.removeChild(toast);
+          }, 500);
+        }, 1500);
+      }
+
+      deleteSupply(supply: SupplyInterface) {
+        Swal.fire({
+          title: 'Deseja apagar este Fornecedor?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Sim',
+          denyButtonText: 'Não',
+          customClass: {
+            popup: 'custom-popup',
+            confirmButton: 'custom-confirm-button',
+            icon: 'custom-icon',
+          },
+        }).then((res) => {
+          if (res.isConfirmed) {
+            this.supplyService.deleteSupply(supply.id).subscribe(() => {
+              Swal.fire({
+                title: 'Colaborador Desligado!',
+                icon: 'success',
+                customClass: {
+                  popup: 'custom-popup',
+                  confirmButton: 'custom-confirm-button',
+                  icon: 'custom-icon',
+                },
+              });
+              this.dialog.closeAll()
+              this.getSupply();
+            });
+          }
+        });
+      }
+    
+      openModalRegister() {
+        const dialogRef = this.dialog.open(SupplyPopUpComponent, {
+          width: '100vw',
+          height: '100vh',
+          maxWidth: '36vw',
+          maxHeight: '100vh',
+          panelClass: 'scrollable-dialog',
+        });
+    
+        dialogRef.afterClosed().subscribe(() => {
+          this.getSupply();
+        });
+      }
+    
+      showAlert() {
+        Swal.fire({
+          title: 'Selecione algum campo para ser editado!',
+          icon: 'warning',
+          iconColor: '#DAD7CD',
+          confirmButtonText: 'OK',
+          customClass: {
+            popup: 'custom-popup',
+            confirmButton: 'custom-confirm-button',
+            icon: 'custom-icon',
+          },
+        });
+      }
+
+      openModalEdit() {
+        if (!this.selectedItem) {
+          this.showAlert();
+          return;
+        }
+        const dialogRef = this.dialog.open(SupplyPopUpComponent, {
+          width: '100vw',
+          height: '100vh',
+          maxWidth: '36vw',
+          maxHeight: '100vh',
+          panelClass: 'scrollable-dialog',
+          data: this.selectedItem,
+        });
+    
+        dialogRef.componentInstance.buttonText = 'Atualizar';
+        dialogRef.componentInstance.TitleText = 'Atualizar Colaborador';
+        dialogRef.componentInstance.registerSupply =
+          dialogRef.componentInstance.editSupply;
+    
+        dialogRef.afterClosed().subscribe(() => {
+          this.selectedItem = null;
+          this.getSupply();
+        });
+      }
+
+
+
+
+
 }

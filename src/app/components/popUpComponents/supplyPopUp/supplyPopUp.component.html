@@ -1,0 +1,67 @@
+<div class="form-container">
+    <div class="form-header">
+      <h2>{{ TitleText }}</h2>
+      <button class="close-button" (click)="onClose()">&times;</button>
+    </div>
+    <form [formGroup]="register">
+      <div class="form-group">
+        <label for="nome_Empresa">Nome da Empresa</label>
+        <input type="text" id="nome_Empresa" formControlName="nome_Empresa" />
+        <div
+          *ngIf="register.get('nome_Empresa')?.touched && register.get('nome_Empresa')?.invalid"
+          class="error-message"
+        >
+          Nome da empresa é obrigatório.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="cnpj">CNPJ</label>
+        <input type="text" id="cnpj" formControlName="cnpj" />
+        <div
+          *ngIf="register.get('cnpj')?.touched && register.get('cnpj')?.errors?.['required']"
+          class="error-message"
+        >
+          CNPJ é obrigatório.
+        </div>
+        <div
+          *ngIf="register.get('cnpj')?.touched && register.get('cnpj')?.errors?.['cnpjInvalido']"
+          class="error-message"
+        >
+          CNPJ inválido.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="endereco">Endereço</label>
+        <input type="text" id="endereco" formControlName="endereco" />
+        <div
+          *ngIf="register.get('endereco')?.touched && register.get('endereco')?.invalid"
+          class="error-message"
+        >
+          Endereço é obrigatório.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input type="text" id="telefone" formControlName="telefone" />
+        <div
+          *ngIf="register.get('telefone')?.touched && register.get('telefone')?.invalid"
+          class="error-message"
+        >
+          Telefone é obrigatório.
+        </div>
+      </div>
+  
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="register.invalid"
+        (click)="onSubmit()"
+      >
+        {{ buttonText }}
+      </button>
+    </form>
+  </div>
+  

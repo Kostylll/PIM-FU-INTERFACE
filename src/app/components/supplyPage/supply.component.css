@@ -41,7 +41,7 @@ table tr:hover {
 
 table th:first-child,
 table td:first-child {
-  width: 4%;
+  width: 40%;
 }
 
 .navbar {
