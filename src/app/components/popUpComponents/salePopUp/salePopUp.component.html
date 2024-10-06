@@ -1,0 +1,47 @@
+<div class="form-container">
+  <div class="form-header">
+    <h2>{{ TitleText }}</h2>
+    <button class="close-button" (click)="onClose()">&times;</button>
+  </div>
+  <form [formGroup]="register">
+    <div class="form-group">
+      <label for="nome_Empresa">Nome da Empresa</label>
+      <select id="nome_Empresa" formControlName="nome_Empresa">
+        <option *ngFor="let empresa of empresas" [value]="empresa.nome_Empresa">{{ empresa.nome_Empresa }}</option>
+      </select>
+      <div *ngIf="register.get('nome_Empresa')?.touched && register.get('nome_Empresa')?.invalid" class="error-message">
+        Nome da empresa é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="produto_Vendido">Produto Vendido</label>
+      <select id="produto_Vendido" formControlName="produto_Vendido">
+        <option *ngFor="let produto of produtos" [value]="produto.nome_Produto">{{ produto.nome_Produto }}</option>
+      </select>
+      <div *ngIf="register.get('produto_Vendido')?.touched && register.get('produto_Vendido')?.invalid" class="error-message">
+        Produto Vendido é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="quantidade_Vendida">Quantidade Vendida</label>
+      <input type="number" id="quantidade_Vendida" formControlName="quantidade_Vendida" />
+      <div *ngIf="register.get('quantidade_Vendida')?.touched && register.get('quantidade_Vendida')?.invalid" class="error-message">
+        Quantidade vendida é obrigatória.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="local_Vendido">Local Vendido</label>
+      <input type="text" id="local_Vendido" formControlName="local_Vendido" />
+      <div *ngIf="register.get('local_Vendido')?.touched && register.get('local_Vendido')?.invalid" class="error-message">
+        Local vendido é obrigatório.
+      </div>
+    </div>
+
+    <button type="submit" class="submit-button" [disabled]="register.invalid" (click)="onSubmit()">
+      {{ buttonText }}
+    </button>
+  </form>
+</div>

@@ -17,7 +17,7 @@
   
       <div class="form-group">
         <label for="cnpj">CNPJ</label>
-        <input type="text" id="cnpj" formControlName="cnpj" />
+        <input type="text" id="cnpj" formControlName="cnpj"/>
         <div
           *ngIf="register.get('cnpj')?.touched && register.get('cnpj')?.errors?.['required']"
           class="error-message"

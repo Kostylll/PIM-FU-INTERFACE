@@ -1,7 +1,7 @@
 .container {
   display: flex;
-  flex-direction: column; /* Para alinhar a barra de busca acima da tabela */
-  align-items: flex-end; /* A barra de busca fica alinhada à direita da tabela */
+  flex-direction: column;
+  align-items: flex-end; 
   width: 100%;
 }
 

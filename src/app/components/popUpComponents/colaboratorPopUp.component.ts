@@ -71,7 +71,7 @@ export class ColaboratorPopUpComponent implements OnInit {
     }
   }
 
-  // Confirmação do registro ou edição
+
   confirmRegister() {
     const message = this.edit ? 'Deseja salvar as alterações deste colaborador?' : 'Deseja adicionar este colaborador?';
 
@@ -90,9 +90,9 @@ export class ColaboratorPopUpComponent implements OnInit {
       if (res.isConfirmed) {
         if (this.edit) {
           this.editColaborator();
-          this.dialogRef.close(); // Chama a função de edição
+          this.dialogRef.close();
         } else {
-          this.registerColaborator(); // Chama a função de registro
+          this.registerColaborator(); 
           this.dialogRef.close();
         }
       }

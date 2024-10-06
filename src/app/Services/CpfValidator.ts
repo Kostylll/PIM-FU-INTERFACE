@@ -3,7 +3,7 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 export class CpfValidator {
 
   static validarCpf(control: AbstractControl): ValidationErrors | null {
-    const cpf = control.value?.replace(/\D/g, ''); // Remove tudo que não é número
+    const cpf = control.value?.replace(/\D/g, ''); 
     if (!cpf || cpf.length !== 11) {
       return { cpfInvalido: true };
     }
@@ -11,7 +11,7 @@ export class CpfValidator {
     let soma = 0;
     let resto;
 
-    // Primeiro dígito verificador
+
     for (let i = 1; i <= 9; i++) {
       soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
     }
@@ -25,7 +25,7 @@ export class CpfValidator {
 
     soma = 0;
 
-    // Segundo dígito verificador
+
     for (let i = 1; i <= 10; i++) {
       soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
     }
@@ -37,17 +37,16 @@ export class CpfValidator {
       return { cpfInvalido: true };
     }
 
-    return null; // CPF válido
+    return null; 
   }
 
   static validarCnpj(control: AbstractControl): ValidationErrors | null {
-    const cnpj = control.value?.replace(/\D/g, ''); // Remove tudo que não é número
-
+    const cnpj = control.value?.replace(/\D/g, ''); 
     if (!cnpj || cnpj.length !== 14) {
       return { cnpjInvalido: true };
     }
 
-    // CNPJs conhecidos como inválidos
+    
     if (/^(\d)\1+$/.test(cnpj)) {
       return { cnpjInvalido: true };
     }
@@ -84,7 +83,7 @@ export class CpfValidator {
       return { cnpjInvalido: true };
     }
 
-    return null; // CNPJ válido
+    return null; 
   }
 }
 

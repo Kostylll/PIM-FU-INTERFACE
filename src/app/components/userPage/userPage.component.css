@@ -77,9 +77,9 @@
     min-width: calc(50% - 10px);
   }
   
-/* //navbar */
+
   .navbar {
-    background-color: #344E41; /* Verde escuro semelhante ao da imagem */
+    background-color: #344E41; 
     color: white;
     display: flex;
     justify-content: space-between;
