@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #344E41; /* Verde escuro semelhante ao da imagem */
+  background-color: #344E41; 
   color: white;
   display: flex;
   justify-content: space-between;
@@ -27,7 +27,7 @@
   cursor: pointer;
 }
 
-/* Responsividade */
+
 @media screen and (max-width: 600px) {
     .navbar a {
         float: none;
@@ -55,41 +55,41 @@
 }
 
 .btn-top-right {
-    background-color: #229e4b; /* Cor de fundo do botão */
-    color: #fff; /* Cor do texto */
+    background-color: #229e4b; 
+    color: #fff; 
     border: none;
     padding: 10px 15px;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 4px; /* Bordas arredondadas do botão */
+    border-radius: 4px; 
     text-decoration: none;
     text-align: center;
-    position: absolute; /* Posiciona o botão */
-    top: 45px; /* Ajuste a distância do topo */
-    right: 21.5vh; /* Ajuste a distância da direita */
-    z-index: 10; /* Garante que o botão fique acima de outros elementos */
+    position: absolute;
+    top: 45px; 
+    right: 21.5vh; 
+    z-index: 10; 
 }
 
 .btn-top-right:hover{
     background-color: #1f6837;
 }
 
-/* Estilo para o container da card para permitir o posicionamento absoluto */
+
 .card-body {
-    position: relative; /* Faz com que o container seja o ponto de referência para o posicionamento absoluto do botão */
+    position: relative; 
     padding: 20px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   width: 600px;
-  height: 600px;
+  height: 300px;
   margin: auto;
   position: absolute;
   top: 53%;
-  left: 50%;
+  left: 48%;
   transform: translate(-50%, -50%);
 }
 
